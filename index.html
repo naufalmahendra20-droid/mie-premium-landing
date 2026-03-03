@@ -1,95 +1,350 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mie Andalan • Koleksi Mewah</title>
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: Playfair Display & Montserrat -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- Hubungkan file CSS -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOM - Nikmati Kelezatan Sejati</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === VARIABEL WARNA & DASAR === */
+        :root {
+            --primary-red: #c1121f;
+            --dark-red: #780000;
+            --cream: #fdf0d5;
+            --dark-text: #333333;
+            --gold: #fca311;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        /* === ANIMASI SCROLL (REVEAL) === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === NAVBAR === */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: var(--primary-red);
+            color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        .logo { font-size: 28px; font-weight: 800; color: var(--gold); }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .btn-pesan {
+            background-color: var(--gold);
+            color: var(--dark-red);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: var(--transition);
+        }
+        .btn-pesan:hover {
+            background-color: var(--white);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(252, 163, 17, 0.4);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px 5% 50px;
+            color: var(--white);
+        }
+        .hero-text { flex: 1; padding-right: 50px; }
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .hero-text p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        /* Efek melayang pada gambar hero */
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 50%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* === KOLOM DISKON MEWAH === */
+        .discount-banner {
+            background: linear-gradient(90deg, var(--gold), #ffd166);
+            padding: 40px 5%;
+            text-align: center;
+            border-radius: 20px;
+            margin: -50px 5% 50px; /* Overlap dengan hero */
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            color: var(--dark-red);
+        }
+        .discount-banner h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .discount-banner p { font-size: 1.2rem; font-weight: 600; }
+        .promo-code {
+            display: inline-block;
+            background: var(--white);
+            padding: 10px 20px;
+            border: 2px dashed var(--dark-red);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-top: 15px;
+            border-radius: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* === MENU SECTION === */
+        .menu-section { padding: 50px 5%; text-align: center; }
+        .section-title { font-size: 2.5rem; color: var(--dark-red); margin-bottom: 40px; }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .menu-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .menu-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .menu-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        .menu-card:hover img { transform: scale(1.05); }
+        .menu-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .price { color: var(--primary-red); font-size: 1.3rem; font-weight: 800; }
+
+        /* === TESTIMONI (SLIDER OTOMATIS KE SAMPING) === */
+        .testimoni-section {
+            padding: 80px 5%;
+            background-color: var(--dark-red);
+            color: var(--white);
+            text-align: center;
+            overflow: hidden;
+        }
+        .testimoni-section .section-title { color: var(--gold); }
+        .slider-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .slide {
+            min-width: 100%;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .slide i { font-size: 3rem; color: var(--gold); margin-bottom: 20px; }
+        .slide p { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; line-height: 1.6; }
+        .slide h4 { font-size: 1.1rem; color: var(--gold); }
+
+        /* === FOOTER === */
+        footer {
+            background-color: #1a1a1a;
+            color: var(--white);
+            text-align: center;
+            padding: 30px 5%;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
+            .hero-text { padding-right: 0; margin-bottom: 40px; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .nav-links { display: none; } /* Simplified for mobile */
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header mewah -->
-    <div class="header">
-      <i class="fas fa-crown"></i>
-      <h1>Menu Andalan Kami</h1>
-    </div>
 
-    <!-- Grid Menu (3 item) -->
-    <div class="menu-grid">
-      <!-- Mie Pedas Level 3 -->
-      <div class="menu-card">
-        <img src="https://images.unsplash.com/photo-1612929633738-8fe44d7d2e07?w=600&h=400&fit=crop&auto=format" alt="Mie Pedas Level 3" loading="lazy">
-        <div class="menu-content">
-          <h2><i class="fas fa-pepper-hot"></i> Mie Pedas Level 3</h2>
-          <p class="desc">Mie kenyal + cabe setan</p>
-          <div class="footer-card">
-            <span class="price">Rp 35.000 <small>/porsi</small></span>
-            <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
-          </div>
+    <nav>
+        <div class="logo">BOOM</div>
+        <div class="nav-links">
+            <a href="#hero">Beranda</a>
+            <a href="#menu">Menu</a>
+            <a href="#testimoni">Ulasan</a>
         </div>
-      </div>
+        <a href="#menu" class="btn-pesan">Pesan Sekarang</a>
+    </nav>
 
-      <!-- Mie Yamin Bakso -->
-      <div class="menu-card">
-        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&h=400&fit=crop&auto=format" alt="Mie Yamin Bakso" loading="lazy">
-        <div class="menu-content">
-          <h2><i class="fas fa-dumpling"></i> Mie Yamin Bakso</h2>
-          <p class="desc">Mie manis gurih + bakso sapi</p>
-          <div class="footer-card">
-            <span class="price">Rp 42.000</span>
-            <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
-          </div>
+    <header id="hero" class="hero">
+        <div class="hero-text reveal">
+            <h1>Rasa Mewah,<br>Harga Merakyat</h1>
+            <p>Nikmati sensasi kuliner terbaik dengan perpaduan bumbu rahasia yang menggugah selera. Dibuat langsung oleh chef profesional untuk kepuasan Anda.</p>
+            <a href="#menu" class="btn-pesan" style="font-size: 1.2rem; padding: 15px 35px;">Lihat Menu</a>
         </div>
-      </div>
-
-      <!-- Mie Kari Spesial -->
-      <div class="menu-card">
-        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&h=400&fit=crop&auto=format" alt="Mie Kari Spesial" loading="lazy">
-        <div class="menu-content">
-          <h2><i class="fas fa-egg"></i> Mie Kari Spesial</h2>
-          <p class="desc">Kuah kari creamy + ayam</p>
-          <div class="footer-card">
-            <span class="price">Rp 48.000</span>
-            <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
-          </div>
+        <div class="hero-image reveal">
+            <img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mie Lezat">
         </div>
-      </div>
-    </div>
+    </header>
 
-    <!-- Bagian Mengapa Memilih Kami (3 fitur) -->
-    <div class="section-title">
-      <i class="fas fa-star"></i> Mengapa Memilih Kami?
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <i class="fas fa-seedling feature-icon"></i>
-        <h3>Mie Fresh Setiap Hari</h3>
-        <p>Dibuat tanpa pengawet, langsung diolah.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-jar feature-icon"></i>
-        <h3>Bumbu Rahasia</h3>
-        <p>Resep turun-turun dengan sentuhan modern.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-motorcycle feature-icon"></i>
-        <h3>Pengiriman Cepat</h3>
-        <p>30 menit sampai di lokasi Anda.</p>
-      </div>
-    </div>
+    <section id="diskon" class="reveal">
+        <div class="discount-banner">
+            <h2>🔥 Diskon Spesial Hari Ini! 🔥</h2>
+            <p>Dapatkan potongan harga 30% untuk pesanan pertama Anda.</p>
+            <p>Gunakan kode voucher saat checkout:</p>
+            <div class="promo-code">BOOMLEZAT30</div>
+        </div>
+    </section>
 
-    <!-- Footer kecil (optional) -->
-    <div class="signature">
-      <i class="fas fa-utensils"></i>  fresh · rahasia · cepat  <i class="fas fa-utensils"></i>
-    </div>
-  </div>
+    <section id="menu" class="menu-section">
+        <h2 class="section-title reveal">Menu Favorit Kami</h2>
+        <div class="menu-grid">
+            <div class="menu-card reveal">
+                <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mie Goreng Spesial">
+                <h3>Mie Goreng Spesial</h3>
+                <p>Mie kenyal dengan bumbu rempah asli dan toping melimpah.</p>
+                <div class="price">Rp 35.000</div>
+            </div>
+            <div class="menu-card reveal">
+                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Rice Bowl Daging">
+                <h3>Rice Bowl Daging</h3>
+                <p>Nasi hangat dengan irisan daging sapi lada hitam yang empuk.</p>
+                <div class="price">Rp 45.000</div>
+            </div>
+            <div class="menu-card reveal">
+                <img src="https://images.unsplash.com/photo-1626804475297-41609ea084eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ayam Pedas Manis">
+                <h3>Ayam Pedas Manis</h3>
+                <p>Ayam krispi balut saus pedas manis khas BOOM.</p>
+                <div class="price">Rp 30.000</div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Hubungkan file JavaScript -->
-  <script src="script.js"></script>
+    <section id="testimoni" class="testimoni-section">
+        <h2 class="section-title reveal">Apa Kata Mereka?</h2>
+        <div class="slider-container reveal">
+            <div class="slider-track" id="sliderTrack">
+                <div class="slide">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Rasanya benar-benar luar biasa! Bumbunya meresap sampai ke dalam. Desain webnya juga memudahkan saya untuk order. Pasti bakal pesan lagi!"</p>
+                    <h4>- Budi Santoso</h4>
+                </div>
+                <div class="slide">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Diskonnya beneran works! Rice bowl dagingnya juara banget, dagingnya lumer di mulut. Pengiriman juga cepat. Sangat direkomendasikan!"</p>
+                    <h4>- Siti Aminah</h4>
+                </div>
+                <div class="slide">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Kemasan mewah, rasa bintang lima, tapi harga kaki lima. Cocok banget buat makan siang bareng teman-teman kantor."</p>
+                    <h4>- Reza Rahadian</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 BOOM Restaurant. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <script>
+        // 1. ANIMASI SCROLL (REVEAL)
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Jarak dari bawah layar untuk memicu animasi
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Panggil sekali saat load
+
+        // 2. SLIDER TESTIMONI OTOMATIS
+        const track = document.getElementById('sliderTrack');
+        const slides = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+
+        function autoSlide() {
+            currentIndex++;
+            if (currentIndex >= slides.length) {
+                currentIndex = 0; // Kembali ke awal
+            }
+            // Geser ke samping (100% per slide)
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Jalankan slider setiap 4 detik (4000 ms)
+        setInterval(autoSlide, 4000);
+    </script>
+
 </body>
 </html>
