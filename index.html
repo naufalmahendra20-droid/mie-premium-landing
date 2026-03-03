@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savory &mdash; restoran mewah</title>
-    <!-- Google Fonts: Playfair Display (serif) + Inter (sans) -->
+    <title>Savory Reserve | pengalaman kuliner eksklusif</title>
+    <!-- Google Fonts: Playfair Display + Cormorant Garamond (serif lebih mewah) & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* ===== RESET & VARIABEL ===== */
+        /* ----- RESET & VARIABEL PREMIUM ----- */
         * {
             margin: 0;
             padding: 0;
@@ -17,54 +17,53 @@
         }
 
         :root {
-            --cream: #FDF8F5;
-            --merah-bata: #9B2C2C;        /* crimson tua mewah */
-            --emas: #D4AF37;               /* emas elegan */
-            --emas-muda: #e4c580;
-            --teks-gelap: #1A1A1A;
-            --teks-abu: #4a4a4a;
+            --ivory: #faf7f2;          /* lebih lembut dari cream */
+            --merah-dalam: #8b2c2c;     /* merah bata yang lebih dalam */
+            --emas-tua: #b49450;        /* emas lebih kalem, tidak mencolok */
+            --emas-muda: #d8c99b;
+            --teks-charcoal: #1e1e1e;
+            --teks-silver: #5a5a5a;
             --putih: #ffffff;
-            --glass-bg: rgba(253, 248, 245, 0.75);
-            --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.1);
-            --shadow-hover: 0 30px 50px -20px rgba(0,0,0,0.3);
-            --border-radius-card: 24px;
+            --glass-ivory: rgba(250, 247, 242, 0.7);
+            --shadow-langka: 0 25px 50px -20px rgba(0, 0, 0, 0.25);
+            --shadow-terbang: 0 40px 70px -20px rgba(0, 0, 0, 0.4);
+            --border-radius-card: 32px;
             --border-radius-pill: 60px;
-            --cubic-bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* smooth tapi berkarakter */
+            --cubic-mewah: cubic-bezier(0.77, 0, 0.175, 1); /* lebih dramatis */
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--cream);
-            color: var(--teks-gelap);
-            line-height: 1.5;
+            background-color: var(--ivory);
+            color: var(--teks-charcoal);
             overflow-x: hidden;
         }
 
-        /* ===== TIPOGRAFI ===== */
-        h1, h2, h3, h4, .headline-serif {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, .headline-serif {
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
 
         h2 {
-            font-size: clamp(2.2rem, 5vw, 3.2rem);
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 6vw, 3.8rem);
+            margin-bottom: 0.8rem;
         }
 
         .section-subhead {
-            font-size: 1.1rem;
-            color: var(--teks-abu);
+            font-size: 1.15rem;
+            color: var(--teks-silver);
             font-weight: 300;
-            max-width: 600px;
-            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-bottom: 3.5rem;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* ===== REVEAL ANIMATION (SCROLL) ===== */
+        /* ----- REVEAL ANIMASI HALUS ----- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.9s var(--cubic-bezier), transform 0.9s var(--cubic-bezier);
+            transform: translateY(40px);
+            transition: opacity 1s var(--cubic-mewah), transform 1s var(--cubic-mewah);
         }
 
         .reveal.revealed {
@@ -72,45 +71,48 @@
             transform: translateY(0);
         }
 
-        /* ===== TOMBOL ===== */
+        /* ----- TOMBOL DENGAN KARAKTER ----- */
         .btn {
             display: inline-block;
-            padding: 0.9rem 2.5rem;
+            padding: 1rem 2.8rem;
             border-radius: var(--border-radius-pill);
-            font-weight: 600;
+            font-weight: 500;
             text-decoration: none;
-            transition: all 0.4s var(--cubic-bezier);
+            transition: all 0.5s var(--cubic-mewah);
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
             background: transparent;
         }
 
         .btn-primary {
-            background: var(--emas);
-            color: var(--teks-gelap);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+            background: var(--emas-tua);
+            color: var(--teks-charcoal);
+            box-shadow: 0 8px 20px rgba(180, 148, 80, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
         }
 
         .btn-primary:hover {
-            background: #e6c45e;
-            transform: scale(1.02) translateY(-2px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            background: #c4a55c;
+            transform: scale(1.02) translateY(-3px);
+            box-shadow: 0 20px 30px rgba(180, 148, 80, 0.4);
         }
 
         .btn-outline {
-            border: 1px solid var(--emas);
-            color: var(--teks-gelap);
+            border: 1px solid var(--teks-charcoal);
+            color: var(--teks-charcoal);
             background: transparent;
         }
 
         .btn-outline:hover {
-            background: var(--emas);
-            color: #1A1A1A;
-            border-color: var(--emas);
+            background: var(--teks-charcoal);
+            color: var(--ivory);
+            border-color: var(--teks-charcoal);
         }
 
-        /* ===== NAVBAR ===== */
+        /* ----- NAVBAR DENGAN GLASS EFEK SUPER PREMIUM ----- */
         .navbar {
             position: sticky;
             top: 0;
@@ -118,45 +120,46 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(155, 44, 44, 0.1);
-            transition: all 0.3s;
+            padding: 1.2rem 5%;
+            background: var(--glass-ivory);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(139, 44, 44, 0.15);
+            transition: all 0.4s;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--merah-bata);
+            color: var(--merah-dalam);
             letter-spacing: -0.02em;
         }
 
         .nav-menu {
             display: flex;
-            gap: 3rem;
+            gap: 3.5rem;
             list-style: none;
         }
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--teks-gelap);
+            color: var(--teks-charcoal);
             font-weight: 500;
             position: relative;
             transition: color 0.3s;
+            font-size: 1.05rem;
         }
 
         .nav-menu a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -6px;
             left: 0;
             width: 0%;
             height: 2px;
-            background: var(--merah-bata);
-            transition: width 0.3s var(--cubic-bezier);
+            background: var(--merah-dalam);
+            transition: width 0.4s var(--cubic-mewah);
         }
 
         .nav-menu a:hover::after {
@@ -164,32 +167,32 @@
         }
 
         .btn-order {
-            background: var(--merah-bata);
+            background: var(--merah-dalam);
             color: white;
-            padding: 0.6rem 2rem;
+            padding: 0.7rem 2.2rem;
             border-radius: var(--border-radius-pill);
             font-weight: 600;
             border: none;
-            transition: all 0.3s var(--cubic-bezier);
+            transition: all 0.4s var(--cubic-mewah);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(155,44,44,0.2);
+            box-shadow: 0 4px 12px rgba(139, 44, 44, 0.3);
+            font-size: 1rem;
         }
 
         .btn-order:hover {
-            background: #b83b3b;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(155,44,44,0.3);
+            background: #a23b3b;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(139, 44, 44, 0.4);
         }
 
-        /* mobile menu */
         .menu-toggle {
             display: none;
             font-size: 2rem;
             cursor: pointer;
-            color: var(--merah-bata);
+            color: var(--merah-dalam);
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ----- HERO SECTION – FIRST IMPRESSION MEMATIKAN ----- */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -197,36 +200,40 @@
             min-height: 90vh;
             padding: 0 5%;
             position: relative;
-            overflow: hidden;
+            margin-bottom: 2rem;
         }
 
         .hero-content {
             flex: 1 1 45%;
-            padding-right: 4%;
+            padding-right: 5%;
         }
 
         .hero-content h1 {
-            font-size: clamp(2.8rem, 7vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--teks-gelap);
+            font-size: clamp(3.5rem, 9vw, 6rem);
+            line-height: 1.0;
+            margin-bottom: 1.8rem;
+            color: var(--teks-charcoal);
+            font-weight: 700;
         }
 
         .hero-content h1 span {
-            color: var(--merah-bata);
+            color: var(--merah-dalam);
             font-style: italic;
+            font-family: 'Playfair Display', serif;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            color: var(--teks-abu);
-            margin-bottom: 2.5rem;
-            max-width: 500px;
+            font-size: 1.25rem;
+            color: var(--teks-silver);
+            margin-bottom: 3rem;
+            max-width: 520px;
+            font-weight: 300;
+            line-height: 1.6;
         }
 
         .hero-cta {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -235,248 +242,266 @@
             flex: 1 1 45%;
             position: relative;
             text-align: center;
+            filter: drop-shadow(0 30px 40px rgba(0,0,0,0.2));
         }
 
         .hero-image img {
             width: 100%;
-            max-width: 550px;
+            max-width: 600px;
             border-radius: 40px 40px 40px 40px;
-            box-shadow: 0 40px 70px -20px rgba(0,0,0,0.35);
-            animation: float 6s infinite alternate var(--cubic-bezier);
+            box-shadow: var(--shadow-terbang);
+            animation: float-luar-biasa 7s infinite alternate var(--cubic-mewah);
             transform-origin: center;
+            border: 2px solid rgba(255,255,255,0.5);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-25px) rotate(1deg); }
+        @keyframes float-luar-biasa {
+            0% { transform: translateY(0px) rotate(-0.5deg); }
+            100% { transform: translateY(-28px) rotate(1deg); }
         }
 
-        /* ===== PROMO OVERLAPPING CARD ===== */
+        /* ----- PROMO OVERLAPPING CARD – ELEGAN & MENARIK ----- */
         .promo-section {
             position: relative;
-            height: 120px;
-            margin: 2rem 5% 4rem;
-            z-index: 10;
+            height: 150px;
+            margin: 0 5% 5rem;
+            z-index: 20;
         }
 
         .promo-card {
-            background: linear-gradient(135deg, var(--emas-muda) 0%, var(--emas) 100%);
-            padding: 2rem 3rem;
-            border-radius: 30px;
+            background: linear-gradient(145deg, #f0e5d8 0%, #e6d6bf 100%);
+            padding: 2.2rem 3.5rem;
+            border-radius: 50px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.3);
-            border: 2px dashed var(--merah-bata);
+            box-shadow: 0 30px 50px -25px rgba(0,0,0,0.4);
+            border: 2px dashed var(--merah-dalam);
             position: absolute;
-            top: -60px;
+            top: -70px;
             left: 0;
             right: 0;
             margin: 0 auto;
-            max-width: 900px;
+            max-width: 950px;
+            backdrop-filter: blur(10px);
+            background: rgba(230, 214, 191, 0.85);
         }
 
         .promo-text h3 {
-            font-size: 2rem;
-            color: var(--teks-gelap);
-            letter-spacing: -0.02em;
+            font-size: 2.3rem;
+            color: var(--teks-charcoal);
+            font-weight: 600;
         }
 
         .promo-text p {
-            color: var(--teks-abu);
-            font-weight: 500;
+            color: var(--teks-silver);
+            font-weight: 400;
+            font-size: 1.1rem;
         }
 
         .promo-code {
-            background: var(--merah-bata);
+            background: var(--merah-dalam);
             color: white;
-            padding: 0.8rem 2.2rem;
+            padding: 0.8rem 2.5rem;
             border-radius: 60px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            font-size: 1.5rem;
-            border: 2px solid white;
-            box-shadow: 0 6px 0 #5e1b1b;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 1.8rem;
+            border: 3px solid var(--emas-muda);
+            box-shadow: 0 6px 0 #571c1c;
+            font-family: 'Playfair Display', serif;
         }
 
-        /* ===== MENU SECTION ===== */
+        /* ----- MENU GRID – KARTU PREMIUM ----- */
         .menu-section {
-            padding: 6rem 5% 4rem;
-            background: white;
-            border-radius: 60px 60px 0 0;
-            margin-top: 2rem;
+            padding: 6rem 5% 5rem;
+            background: var(--putih);
+            border-radius: 70px 70px 0 0;
+            margin-top: 1rem;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
             margin-top: 3rem;
         }
 
         .menu-card {
-            background: var(--cream);
+            background: var(--ivory);
             border-radius: var(--border-radius-card);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.5s var(--cubic-bezier);
+            box-shadow: var(--shadow-langka);
+            transition: all 0.6s var(--cubic-mewah);
             text-decoration: none;
             color: inherit;
             display: block;
+            border: 1px solid rgba(180, 148, 80, 0.2);
         }
 
         .menu-card:hover {
-            transform: translateY(-16px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-20px);
+            box-shadow: var(--shadow-terbang);
+            border-color: var(--emas-tua);
         }
 
         .card-img {
             overflow: hidden;
-            height: 240px;
+            height: 260px;
+            position: relative;
         }
 
         .card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s var(--cubic-bezier);
+            transition: transform 0.9s var(--cubic-mewah);
         }
 
         .menu-card:hover .card-img img {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
         .card-content {
-            padding: 1.8rem 1.5rem 2rem;
+            padding: 2rem 1.8rem 2.2rem;
         }
 
         .card-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 600;
         }
 
         .price {
             font-family: 'Playfair Display', serif;
-            color: var(--emas);
+            color: var(--emas-tua);
             font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 2rem;
         }
 
         .card-content p {
-            color: var(--teks-abu);
+            color: var(--teks-silver);
             font-size: 1rem;
+            line-height: 1.5;
         }
 
-        /* ===== TESTIMONI SLIDER ===== */
+        /* ----- TESTIMONI SLIDER – SANGAT LEMBUT & OTOMATIS ----- */
         .testimonial-section {
-            padding: 5rem 5%;
-            background: var(--cream);
+            padding: 6rem 5%;
+            background: linear-gradient(180deg, var(--ivory) 0%, #f3ede5 100%);
         }
 
         .slider-container {
             position: relative;
             overflow: hidden;
-            margin-top: 3rem;
-            padding: 1rem 0;
+            margin-top: 2rem;
+            padding: 2rem 0;
         }
 
         .testimonials-track {
             display: flex;
-            gap: 2rem;
-            transition: transform 0.6s var(--cubic-bezier);
+            gap: 2.5rem;
+            transition: transform 0.8s var(--cubic-mewah);
             will-change: transform;
         }
 
         .testimonial-card {
-            flex: 0 0 350px;
-            background: white;
-            padding: 2rem 2rem 2.5rem;
-            border-radius: 28px;
-            box-shadow: 0 15px 30px -15px rgba(0,0,0,0.15);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.3s;
+            flex: 0 0 380px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 2.5rem 2.5rem 3rem;
+            border-radius: 36px;
+            box-shadow: 0 30px 40px -30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(180, 148, 80, 0.3);
+            transition: all 0.4s;
         }
 
         .testimonial-card:hover {
-            box-shadow: 0 25px 40px -15px rgba(155,44,44,0.2);
+            background: white;
+            box-shadow: 0 35px 60px -30px var(--merah-dalam);
         }
 
         .quote-icon {
-            font-size: 4rem;
-            font-family: serif;
-            color: var(--emas);
-            line-height: 1;
+            font-size: 5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--emas-tua);
+            line-height: 0.8;
             margin-bottom: 0.5rem;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .stars {
-            color: var(--emas);
-            font-size: 1.3rem;
-            margin-bottom: 1.2rem;
-            letter-spacing: 4px;
+            color: var(--emas-tua);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 5px;
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-style: italic;
-            color: var(--teks-gelap);
-            margin-bottom: 1.5rem;
+            color: var(--teks-charcoal);
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
         .customer-name {
-            font-weight: 700;
-            color: var(--merah-bata);
-            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--merah-dalam);
+            font-size: 1.2rem;
+            font-family: 'Cormorant Garamond', serif;
         }
 
-        /* ===== FOOTER ===== */
+        /* ----- FOOTER ELEGAN ----- */
         footer {
             background: #1a1a1a;
-            color: #aaa;
-            padding: 3rem 5% 2rem;
-            border-radius: 40px 40px 0 0;
+            color: #aaaaaa;
+            padding: 4rem 5% 2rem;
+            border-radius: 50px 50px 0 0;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
         }
 
         .footer-col h4 {
             color: white;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 1.8rem;
+            font-size: 1.7rem;
+            font-weight: 600;
         }
 
         .footer-col p, .footer-col a {
             color: #aaa;
             text-decoration: none;
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             transition: color 0.2s;
+            font-weight: 300;
         }
 
         .footer-col a:hover {
-            color: var(--emas);
+            color: var(--emas-tua);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 2.5rem;
             border-top: 1px solid #333;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
+        /* ----- RESPONSIVE MAKSIMAL ----- */
+        @media (max-width: 1000px) {
             .nav-menu {
                 display: none;
             }
@@ -497,170 +522,177 @@
             .promo-card {
                 flex-direction: column;
                 text-align: center;
-                gap: 1.5rem;
-                top: -30px;
-                padding: 1.5rem;
+                gap: 1.8rem;
+                top: -40px;
+                padding: 1.8rem;
             }
             .promo-section {
-                height: 180px;
+                height: 200px;
             }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 550px) {
             .testimonial-card {
-                flex: 0 0 280px;
+                flex: 0 0 300px;
             }
             .btn-order {
-                padding: 0.6rem 1.2rem;
+                padding: 0.6rem 1.5rem;
+            }
+            .promo-code {
+                font-size: 1.4rem;
+                padding: 0.6rem 1.8rem;
             }
         }
 
-        /* nav mobile sederhana (opsional, tanpa toggle JS) */
+        /* mobile menu */
         .nav-menu.active {
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 70px;
+            top: 75px;
             left: 0;
             right: 0;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            padding: 2rem;
-            gap: 2rem;
+            background: var(--glass-ivory);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            gap: 2.2rem;
             align-items: center;
-            border-bottom: 1px solid var(--emas);
+            border-bottom: 1px solid var(--emas-tua);
+            border-radius: 0 0 40px 40px;
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAVBAR STICKY + GLASS ===== -->
+    <!-- NAVBAR PREMIUM -->
     <nav class="navbar">
-        <div class="logo">Savory</div>
+        <div class="logo">Savory Reserve</div>
         <ul class="nav-menu" id="navMenu">
-            <li><a href="#">Home</a></li>
+            <li><a href="#">Beranda</a></li>
             <li><a href="#">Menu</a></li>
             <li><a href="#">Tentang</a></li>
             <li><a href="#">Kontak</a></li>
+            <li><a href="#">Reservasi</a></li>
         </ul>
         <div class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('active')">☰</div>
         <button class="btn-order">Order Now</button>
     </nav>
 
-    <!-- ===== HERO SPLIT + FLOATING IMAGE ===== -->
+    <!-- HERO SECTION DENGAN GAMBAR FLOATING SUPER PREMIUM -->
     <section class="hero">
         <div class="hero-content reveal">
-            <h1>Elevating <span>rasa</span>, merayakan momen</h1>
-            <p>Perpaduan cita rasa tradisional dan sentuhan modern. Setiap hidangan adalah karya seni.</p>
+            <h1>Elevating <span>rasa,</span> merayakan momen</h1>
+            <p>Perpaduan cita rasa tradisional dan sentuhan modern. Setiap hidangan adalah mahakarya seni kuliner.</p>
             <div class="hero-cta">
                 <a href="#" class="btn btn-primary">Pesan Sekarang</a>
                 <a href="#" class="btn btn-outline">Lihat Menu</a>
             </div>
         </div>
         <div class="hero-image reveal">
-            <img src="https://images.unsplash.com/photo-1546039907-7fa05f864c02?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hidangan steak mewah">
+            <!-- Gambar resolusi super tinggi, kesan mewah -->
+            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Platting hidangan fine dining dengan saus artistik">
         </div>
     </section>
 
-    <!-- ===== PROMO OVERLAPPING CARD ===== -->
+    <!-- PROMO OVERLAPPING CARD -->
     <div class="promo-section">
         <div class="promo-card reveal">
             <div class="promo-text">
-                <h3>Diskon Spesial 20%</h3>
-                <p>Untuk pemesanan pertama dengan kode:</p>
+                <h3>Diskon Eksklusif 20%</h3>
+                <p>Untuk pengalaman pertama, gunakan kode:</p>
             </div>
-            <div class="promo-code">SAVORY20</div>
+            <div class="promo-code">RESERVE20</div>
         </div>
     </div>
 
-    <!-- ===== MENU GRID ===== -->
+    <!-- MENU SIGNATURE -->
     <section class="menu-section">
         <h2 class="reveal">Menu Signature</h2>
-        <p class="section-subhead reveal">Hidangan pilihan dari chef eksekutif, dibuat dengan bahan premium.</p>
+        <p class="section-subhead reveal">Hidangan pilihan dari chef eksekutif, dibuat dengan bahan premium dan cinta.</p>
         <div class="menu-grid">
-            <!-- card 1 -->
+            <!-- Card 1 - Wagyu A5 -->
             <a href="#" class="menu-card reveal">
                 <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Steak Wagyu">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Wagyu A5 dengan saus truffle">
                 </div>
                 <div class="card-content">
                     <h3>Wagyu A5 <span class="price">$89</span></h3>
-                    <p>Daging marbling sempurna, grill dengan mentega truffle.</p>
+                    <p>Daging marbling sempurna, grill dengan mentega truffle dan serpihan emas.</p>
                 </div>
             </a>
-            <!-- card 2 -->
+            <!-- Card 2 - Lobster Fettucine -->
             <a href="#" class="menu-card reveal">
                 <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1604908177453-7462950a6a3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta lobster">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Lobster fettucine with saffron">
                 </div>
                 <div class="card-content">
                     <h3>Lobster Fettucine <span class="price">$72</span></h3>
-                    <p>Saus cream saffron, daging lobster utuh.</p>
+                    <p>Saus cream saffron, daging lobster utuh, taburan caviar.</p>
                 </div>
             </a>
-            <!-- card 3 -->
+            <!-- Card 3 - Duck Confit -->
             <a href="#" class="menu-card reveal">
                 <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1574482620818-1d4f3c0a18da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Duck confit">
+                    <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Duck confit dengan cherry reduction">
                 </div>
                 <div class="card-content">
                     <h3>Duck Confit <span class="price">$58</span></h3>
-                    <p>Bebek slow cook 8 jam, saus cherry reduction.</p>
+                    <p>Bebek slow cook 8 jam, saus cherry reduction, kentang confit.</p>
                 </div>
             </a>
-            <!-- card 4 -->
+            <!-- Card 4 - Tiramisu Klasik -->
             <a href="#" class="menu-card reveal">
                 <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1515516089376-88c0bc5b6fd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tiramisu">
+                    <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=90" alt="Tiramisu klasik dengan lapisan mascarpone">
                 </div>
                 <div class="card-content">
                     <h3>Tiramisu Klasik <span class="price">$24</span></h3>
-                    <p>Mascarpone asli Italia, sentuhan espresso.</p>
+                    <p>Mascarpone asli Italia, espresso segar, sentuhan cokelat pahit.</p>
                 </div>
             </a>
         </div>
     </section>
 
-    <!-- ===== TESTIMONI SLIDER OTOMATIS ===== -->
+    <!-- TESTIMONI SLIDER OTOMATIS -->
     <section class="testimonial-section">
         <h2 class="reveal">Kata Mereka</h2>
-        <p class="section-subhead reveal">Pengalaman nyata dari penikmat kuliner.</p>
+        <p class="section-subhead reveal">Pengalaman nyata dari para penikmat kuliner terbaik.</p>
         <div class="slider-container reveal" id="testimonialSlider">
             <div class="testimonials-track" id="testimonialTrack">
-                <!-- akan diisi oleh js clone -->
+                <!-- Testimoni 1 -->
                 <div class="testimonial-card">
                     <div class="quote-icon">❝</div>
                     <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Salah satu pengalaman fine dining terbaik. Setiap detail dipikirkan, dari plating hingga service."</p>
-                    <div class="customer-name">— A. Wijaya</div>
+                    <p class="testimonial-text">"Salah satu pengalaman fine dining terbaik di hidup saya. Setiap detail dipikirkan, dari plating hingga service."</p>
+                    <div class="customer-name">— Adrian Wijaya</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="quote-icon">❝</div>
                     <div class="stars">★★★★★</div>
                     <p class="testimonial-text">"Wagyu-nya lumer di mulut. Suasana sangat romantis, cocok untuk anniversary."</p>
-                    <div class="customer-name">— S. Tan</div>
+                    <div class="customer-name">— Shania Tan</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="quote-icon">❝</div>
                     <div class="stars">★★★★★</div>
                     <p class="testimonial-text">"Wine pairingnya sempurna. Sommelier sangat knowledgeable. Akan kembali!"</p>
-                    <div class="customer-name">— M. Gunawan</div>
+                    <div class="customer-name">— Michael Gunawan</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="quote-icon">❝</div>
                     <div class="stars">★★★★★</div>
                     <p class="testimonial-text">"Dessert tiramisunya autentik, tidak terlalu manis. Chef berani berinovasi."</p>
-                    <div class="customer-name">— L. Prasetyo</div>
+                    <div class="customer-name">— Laurent Prasetyo</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER BERSIH -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>Savory</h4>
+                <h4>Savory Reserve</h4>
                 <p>Fine dining dengan sentuhan tradisi dan modernitas. Setiap hidangan adalah mahakarya.</p>
             </div>
             <div class="footer-col">
@@ -683,98 +715,93 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2026 Savory. All rights reserved. Designed with elegance.
+            &copy; 2026 Savory Reserve. All rights reserved. Designed dengan standar internasional.
         </div>
     </footer>
 
     <script>
         (function() {
-            // ===== SCROLL REVEAL (Intersection Observer) =====
+            // SCROLL REVEAL dengan Intersection Observer (super halus)
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
                     } else {
-                        // opsional: hilangkan class jika ingin animasi muncul lagi saat scroll balik
-                        // entry.target.classList.remove('revealed'); 
+                        // tidak remove biar tetap keliatan setelah muncul (lebih elegan)
                     }
                 });
-            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }); // sedikit offset biar lebih smooth
+            }, { threshold: 0.2, rootMargin: '0px 0px -70px 0px' });
 
             reveals.forEach(el => observer.observe(el));
 
-            // ===== TESTIMONIAL SLIDER OTOMATIS (INFINITE LOOP) =====
-            (function setupSlider() {
+            // TESTIMONIAL INFINITE SLIDER OTOMATIS
+            (function initSlider() {
                 const track = document.getElementById('testimonialTrack');
                 if (!track) return;
 
                 const cards = Array.from(track.children);
                 if (cards.length === 0) return;
 
-                // clone pertama dan terakhir untuk efek infinite seamless
+                // Clone pertama dan terakhir untuk infinite loop
                 const firstClone = cards[0].cloneNode(true);
                 const lastClone = cards[cards.length - 1].cloneNode(true);
-                track.appendChild(firstClone);               // clone last -> akhir
-                track.insertBefore(lastClone, cards[0]);     // clone first -> awal
+                track.appendChild(firstClone);
+                track.insertBefore(lastClone, cards[0]);
 
                 const allCards = Array.from(track.children);
-                const cardWidth = allCards[0].offsetWidth + 32; // 32 = gap 2rem = 32px (asumsi 1rem=16px)
-                let currentIndex = 1; // mulai dari item asli pertama (setelah clone pertama)
+                // hitung lebar card + gap (2.5rem = 40px)
+                const cardWidth = allCards[0].offsetWidth + 40; 
+                let currentIndex = 1; // mulai dari card asli pertama
                 const totalSlides = allCards.length;
 
-                // atur posisi awal
                 track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
 
                 let autoScroll = setInterval(() => {
                     currentIndex++;
                     track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-                    track.style.transition = 'transform 0.6s var(--cubic-bezier)';
-                }, 3000);
+                    track.style.transition = 'transform 0.8s var(--cubic-mewah)';
+                }, 4000);
 
-                // setelah transisi selesai, cek apakah perlu lompat ke awal (clone)
                 track.addEventListener('transitionend', () => {
                     if (currentIndex === totalSlides - 1) { // nyentuh clone terakhir
-                        currentIndex = 1; // lompat ke item asli pertama
+                        currentIndex = 1;
                         track.style.transition = 'none';
                         track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-                        // force reflow
-                        track.offsetHeight;
-                        track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                        track.offsetHeight; // reflow
+                        track.style.transition = 'transform 0.8s var(--cubic-mewah)';
                     }
-                    if (currentIndex === 0) { // jika nyentuh clone pertama (jarang)
+                    if (currentIndex === 0) {
                         currentIndex = totalSlides - 2;
                         track.style.transition = 'none';
                         track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
                         track.offsetHeight;
-                        track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                        track.style.transition = 'transform 0.8s var(--cubic-mewah)';
                     }
                 });
 
-                // optional: pause on hover
+                // pause on hover
                 const container = document.querySelector('.slider-container');
                 container.addEventListener('mouseenter', () => clearInterval(autoScroll));
                 container.addEventListener('mouseleave', () => {
                     autoScroll = setInterval(() => {
                         currentIndex++;
                         track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-                        track.style.transition = 'transform 0.6s var(--cubic-bezier)';
-                    }, 3000);
+                        track.style.transition = 'transform 0.8s var(--cubic-mewah)';
+                    }, 4000);
                 });
 
-                // resize handling: update lebar jika window resize (sederhana)
+                // resize handling
                 window.addEventListener('resize', () => {
-                    const newCardWidth = allCards[0].offsetWidth + 32;
-                    // update posisi tanpa loncat
+                    const newCardWidth = allCards[0].offsetWidth + 40;
                     track.style.transition = 'none';
                     track.style.transform = `translateX(-${currentIndex * newCardWidth}px)`;
                     track.offsetHeight;
-                    track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                    track.style.transition = 'transform 0.8s var(--cubic-mewah)';
                 });
             })();
 
-            // ===== NAVBAR MOBILE TOGGLE (sudah ada onclick di HTML) =====
-            // sedikit polish: tutup menu saat klik link (optional)
+            // tutup mobile menu saat klik link
             const navLinks = document.querySelectorAll('.nav-menu a');
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
