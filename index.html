@@ -1,475 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mie Andalan - Menu Mewah</title>
-    <!-- Font Awesome 6 (free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Playfair Display untuk judul, Poppins untuk teks -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(145deg, #fcf3e8 0%, #fae4cf 100%);
-            color: #2d1e12;
-            line-height: 1.6;
-            padding: 2rem 1rem;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* ornamen mewah (garis emas) */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, #c6a15b, #eed484, #c6a15b);
-            box-shadow: 0 2px 15px rgba(198, 161, 91, 0.4);
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            background-color: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(4px);
-            border-radius: 60px 60px 40px 40px;
-            padding: 3rem 2rem;
-            box-shadow: 0 30px 50px rgba(120, 70, 30, 0.15), 0 0 0 2px #f0d5b8 inset, 0 0 0 5px #fff5e9 inset;
-        }
-
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
-        }
-
-        h1 {
-            font-size: 3.2rem;
-            background: linear-gradient(135deg, #7a4b2c, #b57c48);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 4px 4px 12px rgba(181, 124, 72, 0.3);
-            border-bottom: 4px solid #dbb47a;
-            padding-bottom: 0.3rem;
-        }
-
-        h2 {
-            font-size: 2.6rem;
-            color: #4a2e1a;
-            border-left: 10px solid #c9a154;
-            padding-left: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        h2 i {
-            color: #b58642;
-            margin-right: 12px;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin: 2rem 0 3rem;
-        }
-
-        .menu-card {
-            background: rgba(255, 250, 240, 0.9);
-            backdrop-filter: blur(8px);
-            border-radius: 40px 20px 40px 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 35px -10px rgba(100, 60, 20, 0.3), 0 0 0 1px #efd7bc, 0 0 0 4px #fffcf5;
-            transition: transform 0.25s ease, box-shadow 0.25s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .menu-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 35px 45px -10px #99663380, 0 0 0 2px #e9c591, 0 0 0 6px #fff0dd;
-        }
-
-        /* foto menu (placeholder) — di sini gambarnya ditambahkan */
-        .menu-img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            border-bottom: 5px solid #e5c49c;
-            transition: transform 0.4s;
-        }
-
-        .menu-card:hover .menu-img {
-            transform: scale(1.02);
-        }
-
-        .menu-content {
-            padding: 1.8rem 1.5rem 1.8rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .menu-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: #4f2d12;
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .menu-title i {
-            color: #c49a6c;
-            font-size: 1.6rem;
-        }
-
-        .menu-desc {
-            font-size: 0.95rem;
-            color: #6f4e37;
-            margin-bottom: 1.2rem;
-            font-style: italic;
-            border-left: 2px solid #ddb582;
-            padding-left: 0.8rem;
-        }
-
-        .menu-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            border-top: 2px dashed #dbba8c;
-            padding-top: 1rem;
-        }
-
-        .price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #7a4a27;
-            letter-spacing: -0.5px;
-        }
-
-        .price small {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #a77242;
-        }
-
-        .btn-add {
-            background: linear-gradient(145deg, #b8863d, #dbb47a);
-            border: none;
-            color: #2d1a07;
-            font-weight: 600;
-            padding: 0.9rem 2rem;
-            border-radius: 50px 20px 50px 20px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 6px 0 #7b4f27, 0 6px 15px #d9a86e;
-            transition: 0.1s linear;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid #ffefcb;
-        }
-
-        .btn-add i {
-            font-size: 1.3rem;
-        }
-
-        .btn-add:active {
-            transform: translateY(5px);
-            box-shadow: 0 1px 0 #7b4f27, 0 6px 15px #d9a86e;
-        }
-
-        /* fitur grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0 2rem;
-        }
-
-        .feature-item {
-            background: rgba(255, 245, 230, 0.7);
-            backdrop-filter: blur(4px);
-            border-radius: 30px 15px 30px 15px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            box-shadow: 0 15px 25px #be9f7b40, 0 0 0 2px #fae1c6, 0 0 0 5px #fff8ec;
-            transition: 0.2s;
-        }
-
-        .feature-item:hover {
-            background: #fff6ea;
-            box-shadow: 0 20px 30px #aa7e58;
-        }
-
-        .feature-icon {
-            font-size: 3.5rem;
-            color: #bc8f5a;
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 0 #ffe2be;
-        }
-
-        .feature-item h3 {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #4b2f16;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-item p {
-            color: #70543b;
-            font-size: 0.95rem;
-        }
-
-        /* statistik mewah */
-        .stats-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 4rem;
-            margin: 4rem 0 3rem;
-            background: rgba(182, 133, 78, 0.15);
-            border-radius: 120px 30px 120px 30px;
-            padding: 2.5rem 2rem;
-            border: 2px solid #e7cba6;
-            box-shadow: inset 0 0 30px #ffeac8;
-        }
-
-        .stat-item {
-            text-align: center;
-            min-width: 150px;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.2rem;
-            font-weight: 900;
-            line-height: 1;
-            background: linear-gradient(135deg, #6b3f1c, #b27a3f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #45321e;
-            border-top: 3px solid #d5aa75;
-            padding-top: 0.5rem;
-            margin-top: 0.3rem;
-            letter-spacing: 1px;
-        }
-
-        /* testimoni */
-        .testimoni-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .testi-card {
-            background: #fffcf4;
-            border-radius: 50px 20px 50px 20px;
-            padding: 2rem 1.8rem;
-            box-shadow: 0 15px 30px #ad886a40, 0 0 0 2px #eed7bd, 0 0 0 6px #fff3e2;
-            position: relative;
-        }
-
-        .testi-card::before {
-            content: "“";
-            font-family: 'Playfair Display', serif;
-            font-size: 7rem;
-            position: absolute;
-            top: -20px;
-            left: 15px;
-            color: #e6c7a8;
-            opacity: 0.5;
-            z-index: 0;
-        }
-
-        .testi-photo {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #dbb17b;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .testi-text {
-            font-style: italic;
-            font-size: 1rem;
-            color: #4a3623;
-            margin: 1rem 0 0.8rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .testi-name {
-            font-weight: 700;
-            color: #7a4f28;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .testi-name i {
-            color: #efc48c;
-        }
-
-        /* footer/ hiasan */
-        .gold-border {
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #cfa668, #f5d7a7, #cfa668, transparent);
-            width: 80%;
-            margin: 3rem auto 1rem;
-        }
-
-        /* responsif */
-        @media (max-width: 700px) {
-            .container { padding: 1.8rem 1rem; }
-            h1 { font-size: 2.6rem; }
-            h2 { font-size: 2rem; }
-            .menu-img { height: 180px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mie Andalan • Koleksi Mewah</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Playfair Display & Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Hubungkan file CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Judul utama -->
-        <h1><i class="fas fa-utensils" style="color: #b88b4b; margin-right: 15px;"></i> Menu Andalan Kami</h1>
-
-        <!-- Daftar menu dengan foto (gambar placeholder) -->
-        <div class="menu-grid">
-            <!-- Mie Pedas Level 3 -->
-            <div class="menu-card">
-                <img class="menu-img" src="https://picsum.photos/id/133/400/250" alt="Mie Pedas" onerror="this.src='https://picsum.photos/400/250?random=1'">
-                <div class="menu-content">
-                    <div class="menu-title">
-                        <i class="fas fa-pepper-hot"></i> Mie Pedas Level 3
-                    </div>
-                    <div class="menu-desc">Mie kenyal + cabe setan</div>
-                    <div class="menu-footer">
-                        <span class="price">Rp 35.000 <small>/porsi</small></span>
-                        <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mie Yamin Bakso -->
-            <div class="menu-card">
-                <img class="menu-img" src="https://picsum.photos/id/431/400/250" alt="Mie Yamin" onerror="this.src='https://picsum.photos/400/250?random=2'">
-                <div class="menu-content">
-                    <div class="menu-title">
-                        <i class="fas fa-dumpling"></i> Mie Yamin Bakso
-                    </div>
-                    <div class="menu-desc">Mie manis gurih + bakso sapi</div>
-                    <div class="menu-footer">
-                        <span class="price">Rp 42.000</span>
-                        <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mie Kari Spesial -->
-            <div class="menu-card">
-                <img class="menu-img" src="https://picsum.photos/id/292/400/250" alt="Mie Kari" onerror="this.src='https://picsum.photos/400/250?random=3'">
-                <div class="menu-content">
-                    <div class="menu-title">
-                        <i class="fas fa-egg"></i> Mie Kari Spesial
-                    </div>
-                    <div class="menu-desc">Kuah kari creamy + ayam</div>
-                    <div class="menu-footer">
-                        <span class="price">Rp 48.000</span>
-                        <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bagian Mengapa Memilih Kami -->
-        <h2><i class="fas fa-star"></i> Mengapa Memilih Kami?</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-leaf"></i></div>
-                <h3>Mie Fresh Setiap Hari</h3>
-                <p>Dibuat tanpa pengawet, langsung diolah.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-mortar-pestle"></i></div>
-                <h3>Bumbu Rahasia</h3>
-                <p>Resep turun-turun dengan sentuhan modern.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-motorcycle"></i></div>
-                <h3>Pengiriman Cepat</h3>
-                <p>30 menit sampai di lokasi Anda.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-coins"></i></div>
-                <h3>Harga Terjangkau</h3>
-                <p>Mie premium dengan harga bersahabat.</p>
-            </div>
-        </div>
-
-        <!-- Statistik mewah -->
-        <div class="stats-wrapper">
-            <div class="stat-item">
-                <div class="stat-number">5.280+</div>
-                <div class="stat-label">Pelanggan Puas</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Varian Mie</div>
-            </div>
-        </div>
-
-        <!-- Apa Kata Pelanggan -->
-        <h2><i class="fas fa-comment-dots"></i> Apa Kata Pelanggan</h2>
-        <div class="testimoni-grid">
-            <div class="testi-card">
-                <img class="testi-photo" src="https://picsum.photos/id/64/100/100" alt="Ayu" onerror="this.src='https://picsum.photos/100/100?random=1'">
-                <div class="testi-text">"Mie pedasnya benar-benar menggugah selera! Level 3 pas buat saya yang suka pedas. Porsinya banyak."</div>
-                <div class="testi-name"><i class="fas fa-circle" style="font-size: 0.6rem; color: #b88b4b;"></i> Ayu Lestari</div>
-            </div>
-            <div class="testi-card">
-                <img class="testi-photo" src="https://picsum.photos/id/65/100/100" alt="Budi" onerror="this.src='https://picsum.photos/100/100?random=2'">
-                <div class="testi-text">"Mie Yamin bakso favorit saya. Kuahnya manis gurih, bakso kenyal. Pengiriman cepat banget!"</div>
-                <div class="testi-name"><i class="fas fa-circle" style="font-size: 0.6rem; color: #b88b4b;"></i> Budi Santoso</div>
-            </div>
-            <div class="testi-card">
-                <img class="testi-photo" src="https://picsum.photos/id/91/100/100" alt="Citra" onerror="this.src='https://picsum.photos/100/100?random=3'">
-                <div class="testi-text">"Kari creamy banget, ayamnya empuk. Tempatnya cozy, tapi saya lebih suka delivery ke rumah."</div>
-                <div class="testi-name"><i class="fas fa-circle" style="font-size: 0.6rem; color: #b88b4b;"></i> Citra Dewi</div>
-            </div>
-        </div>
-
-        <!-- garis hiasan -->
-        <div class="gold-border"></div>
-        <p style="text-align: center; font-size: 0.9rem; color: #7a603f;"><i class="fas fa-crown" style="color: #cd9f68;"></i> Mie istimewa, setiap suapan terasa mewah <i class="fas fa-crown" style="color: #cd9f68;"></i></p>
+  <div class="container">
+    <!-- Header mewah -->
+    <div class="header">
+      <i class="fas fa-crown"></i>
+      <h1>Menu Andalan Kami</h1>
     </div>
 
-    <!-- catatan: foto placeholder sudah ditambahkan untuk setiap menu. Ganti dengan gambar asli jika tersedia -->
+    <!-- Grid Menu (3 item) -->
+    <div class="menu-grid">
+      <!-- Mie Pedas Level 3 -->
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1612929633738-8fe44d7d2e07?w=600&h=400&fit=crop&auto=format" alt="Mie Pedas Level 3" loading="lazy">
+        <div class="menu-content">
+          <h2><i class="fas fa-pepper-hot"></i> Mie Pedas Level 3</h2>
+          <p class="desc">Mie kenyal + cabe setan</p>
+          <div class="footer-card">
+            <span class="price">Rp 35.000 <small>/porsi</small></span>
+            <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mie Yamin Bakso -->
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&h=400&fit=crop&auto=format" alt="Mie Yamin Bakso" loading="lazy">
+        <div class="menu-content">
+          <h2><i class="fas fa-dumpling"></i> Mie Yamin Bakso</h2>
+          <p class="desc">Mie manis gurih + bakso sapi</p>
+          <div class="footer-card">
+            <span class="price">Rp 42.000</span>
+            <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mie Kari Spesial -->
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&h=400&fit=crop&auto=format" alt="Mie Kari Spesial" loading="lazy">
+        <div class="menu-content">
+          <h2><i class="fas fa-egg"></i> Mie Kari Spesial</h2>
+          <p class="desc">Kuah kari creamy + ayam</p>
+          <div class="footer-card">
+            <span class="price">Rp 48.000</span>
+            <button class="btn-add"><i class="fas fa-cart-plus"></i> Tambah</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bagian Mengapa Memilih Kami (3 fitur) -->
+    <div class="section-title">
+      <i class="fas fa-star"></i> Mengapa Memilih Kami?
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-seedling feature-icon"></i>
+        <h3>Mie Fresh Setiap Hari</h3>
+        <p>Dibuat tanpa pengawet, langsung diolah.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-jar feature-icon"></i>
+        <h3>Bumbu Rahasia</h3>
+        <p>Resep turun-turun dengan sentuhan modern.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-motorcycle feature-icon"></i>
+        <h3>Pengiriman Cepat</h3>
+        <p>30 menit sampai di lokasi Anda.</p>
+      </div>
+    </div>
+
+    <!-- Footer kecil (optional) -->
+    <div class="signature">
+      <i class="fas fa-utensils"></i>  fresh · rahasia · cepat  <i class="fas fa-utensils"></i>
+    </div>
+  </div>
+
+  <!-- Hubungkan file JavaScript -->
+  <script src="script.js"></script>
 </body>
-</html>  
+</html>
