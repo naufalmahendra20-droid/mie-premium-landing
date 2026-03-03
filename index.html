@@ -3,348 +3,785 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOOM - Nikmati Kelezatan Sejati</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+    <title>Savory &mdash; restoran mewah</title>
+    <!-- Google Fonts: Playfair Display (serif) + Inter (sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* === VARIABEL WARNA & DASAR === */
-        :root {
-            --primary-red: #c1121f;
-            --dark-red: #780000;
-            --cream: #fdf0d5;
-            --dark-text: #333333;
-            --gold: #fca311;
-            --white: #ffffff;
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
+        /* ===== RESET & VARIABEL ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+        }
+
+        :root {
+            --cream: #FDF8F5;
+            --merah-bata: #9B2C2C;        /* crimson tua mewah */
+            --emas: #D4AF37;               /* emas elegan */
+            --emas-muda: #e4c580;
+            --teks-gelap: #1A1A1A;
+            --teks-abu: #4a4a4a;
+            --putih: #ffffff;
+            --glass-bg: rgba(253, 248, 245, 0.75);
+            --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 30px 50px -20px rgba(0,0,0,0.3);
+            --border-radius-card: 24px;
+            --border-radius-pill: 60px;
+            --cubic-bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* smooth tapi berkarakter */
         }
 
         body {
+            font-family: 'Inter', sans-serif;
             background-color: var(--cream);
-            color: var(--dark-text);
+            color: var(--teks-gelap);
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* === ANIMASI SCROLL (REVEAL) === */
+        /* ===== TIPOGRAFI ===== */
+        h1, h2, h3, h4, .headline-serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-subhead {
+            font-size: 1.1rem;
+            color: var(--teks-abu);
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* ===== REVEAL ANIMATION (SCROLL) ===== */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.9s var(--cubic-bezier), transform 0.9s var(--cubic-bezier);
         }
-        .reveal.active {
+
+        .reveal.revealed {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* === NAVBAR === */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background-color: var(--primary-red);
-            color: var(--white);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-        .logo { font-size: 28px; font-weight: 800; color: var(--gold); }
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            margin: 0 15px;
+        /* ===== TOMBOL ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            border-radius: var(--border-radius-pill);
             font-weight: 600;
-            transition: var(--transition);
-        }
-        .nav-links a:hover { color: var(--gold); }
-        .btn-pesan {
-            background-color: var(--gold);
-            color: var(--dark-red);
-            padding: 10px 25px;
-            border-radius: 30px;
             text-decoration: none;
-            font-weight: 800;
-            transition: var(--transition);
-        }
-        .btn-pesan:hover {
-            background-color: var(--white);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(252, 163, 17, 0.4);
+            transition: all 0.4s var(--cubic-bezier);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            background: transparent;
         }
 
-        /* === HERO SECTION === */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+        .btn-primary {
+            background: var(--emas);
+            color: var(--teks-gelap);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #e6c45e;
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--emas);
+            color: var(--teks-gelap);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--emas);
+            color: #1A1A1A;
+            border-color: var(--emas);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 100px 5% 50px;
-            color: var(--white);
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(155, 44, 44, 0.1);
+            transition: all 0.3s;
         }
-        .hero-text { flex: 1; padding-right: 50px; }
-        .hero-text h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--merah-bata);
+            letter-spacing: -0.02em;
         }
-        .hero-text p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
-        .hero-image {
-            flex: 1;
+
+        .nav-menu {
             display: flex;
-            justify-content: center;
-            position: relative;
+            gap: 3rem;
+            list-style: none;
         }
-        /* Efek melayang pada gambar hero */
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--teks-gelap);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--merah-bata);
+            transition: width 0.3s var(--cubic-bezier);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .btn-order {
+            background: var(--merah-bata);
+            color: white;
+            padding: 0.6rem 2rem;
+            border-radius: var(--border-radius-pill);
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s var(--cubic-bezier);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(155,44,44,0.2);
+        }
+
+        .btn-order:hover {
+            background: #b83b3b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(155,44,44,0.3);
+        }
+
+        /* mobile menu */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--merah-bata);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            min-height: 90vh;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1 1 45%;
+            padding-right: 4%;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--teks-gelap);
+        }
+
+        .hero-content h1 span {
+            color: var(--merah-bata);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--teks-abu);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            flex: 1 1 45%;
+            position: relative;
+            text-align: center;
+        }
+
         .hero-image img {
             width: 100%;
-            max-width: 500px;
-            border-radius: 50%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: float 4s ease-in-out infinite;
+            max-width: 550px;
+            border-radius: 40px 40px 40px 40px;
+            box-shadow: 0 40px 70px -20px rgba(0,0,0,0.35);
+            animation: float 6s infinite alternate var(--cubic-bezier);
+            transform-origin: center;
         }
+
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-25px) rotate(1deg); }
         }
 
-        /* === KOLOM DISKON MEWAH === */
-        .discount-banner {
-            background: linear-gradient(90deg, var(--gold), #ffd166);
-            padding: 40px 5%;
-            text-align: center;
-            border-radius: 20px;
-            margin: -50px 5% 50px; /* Overlap dengan hero */
+        /* ===== PROMO OVERLAPPING CARD ===== */
+        .promo-section {
             position: relative;
+            height: 120px;
+            margin: 2rem 5% 4rem;
             z-index: 10;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            color: var(--dark-red);
-        }
-        .discount-banner h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        .discount-banner p { font-size: 1.2rem; font-weight: 600; }
-        .promo-code {
-            display: inline-block;
-            background: var(--white);
-            padding: 10px 20px;
-            border: 2px dashed var(--dark-red);
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-top: 15px;
-            border-radius: 10px;
-            letter-spacing: 2px;
         }
 
-        /* === MENU SECTION === */
-        .menu-section { padding: 50px 5%; text-align: center; }
-        .section-title { font-size: 2.5rem; color: var(--dark-red); margin-bottom: 40px; }
+        .promo-card {
+            background: linear-gradient(135deg, var(--emas-muda) 0%, var(--emas) 100%);
+            padding: 2rem 3rem;
+            border-radius: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.3);
+            border: 2px dashed var(--merah-bata);
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        .promo-text h3 {
+            font-size: 2rem;
+            color: var(--teks-gelap);
+            letter-spacing: -0.02em;
+        }
+
+        .promo-text p {
+            color: var(--teks-abu);
+            font-weight: 500;
+        }
+
+        .promo-code {
+            background: var(--merah-bata);
+            color: white;
+            padding: 0.8rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+            border: 2px solid white;
+            box-shadow: 0 6px 0 #5e1b1b;
+        }
+
+        /* ===== MENU SECTION ===== */
+        .menu-section {
+            padding: 6rem 5% 4rem;
+            background: white;
+            border-radius: 60px 60px 0 0;
+            margin-top: 2rem;
+        }
+
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
-        .menu-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        .menu-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        .menu-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            transition: var(--transition);
-        }
-        .menu-card:hover img { transform: scale(1.05); }
-        .menu-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .price { color: var(--primary-red); font-size: 1.3rem; font-weight: 800; }
 
-        /* === TESTIMONI (SLIDER OTOMATIS KE SAMPING) === */
-        .testimoni-section {
-            padding: 80px 5%;
-            background-color: var(--dark-red);
-            color: var(--white);
-            text-align: center;
+        .menu-card {
+            background: var(--cream);
+            border-radius: var(--border-radius-card);
             overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.5s var(--cubic-bezier);
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
-        .testimoni-section .section-title { color: var(--gold); }
+
+        .menu-card:hover {
+            transform: translateY(-16px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-img {
+            overflow: hidden;
+            height: 240px;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--cubic-bezier);
+        }
+
+        .menu-card:hover .card-img img {
+            transform: scale(1.08);
+        }
+
+        .card-content {
+            padding: 1.8rem 1.5rem 2rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-family: 'Playfair Display', serif;
+            color: var(--emas);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .card-content p {
+            color: var(--teks-abu);
+            font-size: 1rem;
+        }
+
+        /* ===== TESTIMONI SLIDER ===== */
+        .testimonial-section {
+            padding: 5rem 5%;
+            background: var(--cream);
+        }
+
         .slider-container {
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
             overflow: hidden;
-            border-radius: 20px;
+            margin-top: 3rem;
+            padding: 1rem 0;
         }
-        .slider-track {
+
+        .testimonials-track {
             display: flex;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            gap: 2rem;
+            transition: transform 0.6s var(--cubic-bezier);
+            will-change: transform;
         }
-        .slide {
-            min-width: 100%;
-            padding: 40px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .slide i { font-size: 3rem; color: var(--gold); margin-bottom: 20px; }
-        .slide p { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; line-height: 1.6; }
-        .slide h4 { font-size: 1.1rem; color: var(--gold); }
 
-        /* === FOOTER === */
+        .testimonial-card {
+            flex: 0 0 350px;
+            background: white;
+            padding: 2rem 2rem 2.5rem;
+            border-radius: 28px;
+            box-shadow: 0 15px 30px -15px rgba(0,0,0,0.15);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 25px 40px -15px rgba(155,44,44,0.2);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            font-family: serif;
+            color: var(--emas);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            opacity: 0.5;
+        }
+
+        .stars {
+            color: var(--emas);
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 4px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--teks-gelap);
+            margin-bottom: 1.5rem;
+        }
+
+        .customer-name {
+            font-weight: 700;
+            color: var(--merah-bata);
+            font-size: 1.1rem;
+        }
+
+        /* ===== FOOTER ===== */
         footer {
-            background-color: #1a1a1a;
-            color: var(--white);
-            text-align: center;
-            padding: 30px 5%;
+            background: #1a1a1a;
+            color: #aaa;
+            padding: 3rem 5% 2rem;
+            border-radius: 40px 40px 0 0;
         }
 
-        /* === RESPONSIVE DESIGN === */
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .hero-text { padding-right: 0; margin-bottom: 40px; }
-            .hero-text h1 { font-size: 2.8rem; }
-            .nav-links { display: none; } /* Simplified for mobile */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #aaa;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--emas);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-content {
+                padding-right: 0;
+            }
+            .hero-cta {
+                justify-content: center;
+            }
+            .promo-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+                top: -30px;
+                padding: 1.5rem;
+            }
+            .promo-section {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .testimonial-card {
+                flex: 0 0 280px;
+            }
+            .btn-order {
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
+        /* nav mobile sederhana (opsional, tanpa toggle JS) */
+        .nav-menu.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            gap: 2rem;
+            align-items: center;
+            border-bottom: 1px solid var(--emas);
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">BOOM</div>
-        <div class="nav-links">
-            <a href="#hero">Beranda</a>
-            <a href="#menu">Menu</a>
-            <a href="#testimoni">Ulasan</a>
-        </div>
-        <a href="#menu" class="btn-pesan">Pesan Sekarang</a>
+    <!-- ===== NAVBAR STICKY + GLASS ===== -->
+    <nav class="navbar">
+        <div class="logo">Savory</div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Tentang</a></li>
+            <li><a href="#">Kontak</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('active')">☰</div>
+        <button class="btn-order">Order Now</button>
     </nav>
 
-    <header id="hero" class="hero">
-        <div class="hero-text reveal">
-            <h1>Rasa Mewah,<br>Harga Merakyat</h1>
-            <p>Nikmati sensasi kuliner terbaik dengan perpaduan bumbu rahasia yang menggugah selera. Dibuat langsung oleh chef profesional untuk kepuasan Anda.</p>
-            <a href="#menu" class="btn-pesan" style="font-size: 1.2rem; padding: 15px 35px;">Lihat Menu</a>
+    <!-- ===== HERO SPLIT + FLOATING IMAGE ===== -->
+    <section class="hero">
+        <div class="hero-content reveal">
+            <h1>Elevating <span>rasa</span>, merayakan momen</h1>
+            <p>Perpaduan cita rasa tradisional dan sentuhan modern. Setiap hidangan adalah karya seni.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary">Pesan Sekarang</a>
+                <a href="#" class="btn btn-outline">Lihat Menu</a>
+            </div>
         </div>
         <div class="hero-image reveal">
-            <img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mie Lezat">
-        </div>
-    </header>
-
-    <section id="diskon" class="reveal">
-        <div class="discount-banner">
-            <h2>🔥 Diskon Spesial Hari Ini! 🔥</h2>
-            <p>Dapatkan potongan harga 30% untuk pesanan pertama Anda.</p>
-            <p>Gunakan kode voucher saat checkout:</p>
-            <div class="promo-code">BOOMLEZAT30</div>
+            <img src="https://images.unsplash.com/photo-1546039907-7fa05f864c02?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hidangan steak mewah">
         </div>
     </section>
 
-    <section id="menu" class="menu-section">
-        <h2 class="section-title reveal">Menu Favorit Kami</h2>
+    <!-- ===== PROMO OVERLAPPING CARD ===== -->
+    <div class="promo-section">
+        <div class="promo-card reveal">
+            <div class="promo-text">
+                <h3>Diskon Spesial 20%</h3>
+                <p>Untuk pemesanan pertama dengan kode:</p>
+            </div>
+            <div class="promo-code">SAVORY20</div>
+        </div>
+    </div>
+
+    <!-- ===== MENU GRID ===== -->
+    <section class="menu-section">
+        <h2 class="reveal">Menu Signature</h2>
+        <p class="section-subhead reveal">Hidangan pilihan dari chef eksekutif, dibuat dengan bahan premium.</p>
         <div class="menu-grid">
-            <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mie Goreng Spesial">
-                <h3>Mie Goreng Spesial</h3>
-                <p>Mie kenyal dengan bumbu rempah asli dan toping melimpah.</p>
-                <div class="price">Rp 35.000</div>
-            </div>
-            <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Rice Bowl Daging">
-                <h3>Rice Bowl Daging</h3>
-                <p>Nasi hangat dengan irisan daging sapi lada hitam yang empuk.</p>
-                <div class="price">Rp 45.000</div>
-            </div>
-            <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1626804475297-41609ea084eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ayam Pedas Manis">
-                <h3>Ayam Pedas Manis</h3>
-                <p>Ayam krispi balut saus pedas manis khas BOOM.</p>
-                <div class="price">Rp 30.000</div>
+            <!-- card 1 -->
+            <a href="#" class="menu-card reveal">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Steak Wagyu">
+                </div>
+                <div class="card-content">
+                    <h3>Wagyu A5 <span class="price">$89</span></h3>
+                    <p>Daging marbling sempurna, grill dengan mentega truffle.</p>
+                </div>
+            </a>
+            <!-- card 2 -->
+            <a href="#" class="menu-card reveal">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1604908177453-7462950a6a3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta lobster">
+                </div>
+                <div class="card-content">
+                    <h3>Lobster Fettucine <span class="price">$72</span></h3>
+                    <p>Saus cream saffron, daging lobster utuh.</p>
+                </div>
+            </a>
+            <!-- card 3 -->
+            <a href="#" class="menu-card reveal">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1574482620818-1d4f3c0a18da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Duck confit">
+                </div>
+                <div class="card-content">
+                    <h3>Duck Confit <span class="price">$58</span></h3>
+                    <p>Bebek slow cook 8 jam, saus cherry reduction.</p>
+                </div>
+            </a>
+            <!-- card 4 -->
+            <a href="#" class="menu-card reveal">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1515516089376-88c0bc5b6fd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tiramisu">
+                </div>
+                <div class="card-content">
+                    <h3>Tiramisu Klasik <span class="price">$24</span></h3>
+                    <p>Mascarpone asli Italia, sentuhan espresso.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONI SLIDER OTOMATIS ===== -->
+    <section class="testimonial-section">
+        <h2 class="reveal">Kata Mereka</h2>
+        <p class="section-subhead reveal">Pengalaman nyata dari penikmat kuliner.</p>
+        <div class="slider-container reveal" id="testimonialSlider">
+            <div class="testimonials-track" id="testimonialTrack">
+                <!-- akan diisi oleh js clone -->
+                <div class="testimonial-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Salah satu pengalaman fine dining terbaik. Setiap detail dipikirkan, dari plating hingga service."</p>
+                    <div class="customer-name">— A. Wijaya</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Wagyu-nya lumer di mulut. Suasana sangat romantis, cocok untuk anniversary."</p>
+                    <div class="customer-name">— S. Tan</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Wine pairingnya sempurna. Sommelier sangat knowledgeable. Akan kembali!"</p>
+                    <div class="customer-name">— M. Gunawan</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Dessert tiramisunya autentik, tidak terlalu manis. Chef berani berinovasi."</p>
+                    <div class="customer-name">— L. Prasetyo</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="testimoni" class="testimoni-section">
-        <h2 class="section-title reveal">Apa Kata Mereka?</h2>
-        <div class="slider-container reveal">
-            <div class="slider-track" id="sliderTrack">
-                <div class="slide">
-                    <i class="fas fa-quote-left"></i>
-                    <p>"Rasanya benar-benar luar biasa! Bumbunya meresap sampai ke dalam. Desain webnya juga memudahkan saya untuk order. Pasti bakal pesan lagi!"</p>
-                    <h4>- Budi Santoso</h4>
-                </div>
-                <div class="slide">
-                    <i class="fas fa-quote-left"></i>
-                    <p>"Diskonnya beneran works! Rice bowl dagingnya juara banget, dagingnya lumer di mulut. Pengiriman juga cepat. Sangat direkomendasikan!"</p>
-                    <h4>- Siti Aminah</h4>
-                </div>
-                <div class="slide">
-                    <i class="fas fa-quote-left"></i>
-                    <p>"Kemasan mewah, rasa bintang lima, tapi harga kaki lima. Cocok banget buat makan siang bareng teman-teman kantor."</p>
-                    <h4>- Reza Rahadian</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- ===== FOOTER ===== -->
     <footer>
-        <p>&copy; 2026 BOOM Restaurant. Semua Hak Dilindungi.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Savory</h4>
+                <p>Fine dining dengan sentuhan tradisi dan modernitas. Setiap hidangan adalah mahakarya.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kontak</h4>
+                <p>Jl. Sudirman No. 88, Jakarta</p>
+                <p>+62 21 1234 5678</p>
+                <p>hello@savory.id</p>
+            </div>
+            <div class="footer-col">
+                <h4>Jam Operasional</h4>
+                <p>Senin - Minggu</p>
+                <p>18.00 - 23.00 WIB</p>
+                <p>(Reservasi dianjurkan)</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ikuti Kami</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">TikTok</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Savory. All rights reserved. Designed with elegance.
+        </div>
     </footer>
 
     <script>
-        // 1. ANIMASI SCROLL (REVEAL)
-        function revealOnScroll() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Jarak dari bawah layar untuk memicu animasi
+        (function() {
+            // ===== SCROLL REVEAL (Intersection Observer) =====
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    } else {
+                        // opsional: hilangkan class jika ingin animasi muncul lagi saat scroll balik
+                        // entry.target.classList.remove('revealed'); 
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }); // sedikit offset biar lebih smooth
 
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Panggil sekali saat load
+            reveals.forEach(el => observer.observe(el));
 
-        // 2. SLIDER TESTIMONI OTOMATIS
-        const track = document.getElementById('sliderTrack');
-        const slides = document.querySelectorAll('.slide');
-        let currentIndex = 0;
+            // ===== TESTIMONIAL SLIDER OTOMATIS (INFINITE LOOP) =====
+            (function setupSlider() {
+                const track = document.getElementById('testimonialTrack');
+                if (!track) return;
 
-        function autoSlide() {
-            currentIndex++;
-            if (currentIndex >= slides.length) {
-                currentIndex = 0; // Kembali ke awal
-            }
-            // Geser ke samping (100% per slide)
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
+                const cards = Array.from(track.children);
+                if (cards.length === 0) return;
 
-        // Jalankan slider setiap 4 detik (4000 ms)
-        setInterval(autoSlide, 4000);
+                // clone pertama dan terakhir untuk efek infinite seamless
+                const firstClone = cards[0].cloneNode(true);
+                const lastClone = cards[cards.length - 1].cloneNode(true);
+                track.appendChild(firstClone);               // clone last -> akhir
+                track.insertBefore(lastClone, cards[0]);     // clone first -> awal
+
+                const allCards = Array.from(track.children);
+                const cardWidth = allCards[0].offsetWidth + 32; // 32 = gap 2rem = 32px (asumsi 1rem=16px)
+                let currentIndex = 1; // mulai dari item asli pertama (setelah clone pertama)
+                const totalSlides = allCards.length;
+
+                // atur posisi awal
+                track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+                let autoScroll = setInterval(() => {
+                    currentIndex++;
+                    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                    track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                }, 3000);
+
+                // setelah transisi selesai, cek apakah perlu lompat ke awal (clone)
+                track.addEventListener('transitionend', () => {
+                    if (currentIndex === totalSlides - 1) { // nyentuh clone terakhir
+                        currentIndex = 1; // lompat ke item asli pertama
+                        track.style.transition = 'none';
+                        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                        // force reflow
+                        track.offsetHeight;
+                        track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                    }
+                    if (currentIndex === 0) { // jika nyentuh clone pertama (jarang)
+                        currentIndex = totalSlides - 2;
+                        track.style.transition = 'none';
+                        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                        track.offsetHeight;
+                        track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                    }
+                });
+
+                // optional: pause on hover
+                const container = document.querySelector('.slider-container');
+                container.addEventListener('mouseenter', () => clearInterval(autoScroll));
+                container.addEventListener('mouseleave', () => {
+                    autoScroll = setInterval(() => {
+                        currentIndex++;
+                        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                        track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                    }, 3000);
+                });
+
+                // resize handling: update lebar jika window resize (sederhana)
+                window.addEventListener('resize', () => {
+                    const newCardWidth = allCards[0].offsetWidth + 32;
+                    // update posisi tanpa loncat
+                    track.style.transition = 'none';
+                    track.style.transform = `translateX(-${currentIndex * newCardWidth}px)`;
+                    track.offsetHeight;
+                    track.style.transition = 'transform 0.6s var(--cubic-bezier)';
+                });
+            })();
+
+            // ===== NAVBAR MOBILE TOGGLE (sudah ada onclick di HTML) =====
+            // sedikit polish: tutup menu saat klik link (optional)
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('navMenu').classList.remove('active');
+                });
+            });
+        })();
     </script>
-
 </body>
 </html>
